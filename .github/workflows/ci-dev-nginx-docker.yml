@@ -1,4 +1,4 @@
-name: CI Develop
+name: CI Develop Nginx Docker
 on:
   pull_request:
     types:
@@ -11,9 +11,11 @@ on:
 
 jobs:
   lint-nginx-config:
+    name: Lint Nginx Config
     uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-config.yml@develop
 
   lint-frontend-nginx:
+    name: Lint Nginx Frontend
     uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-frontend.yml@develop
 
   test-docker:

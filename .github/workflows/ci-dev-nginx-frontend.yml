@@ -4,7 +4,7 @@ on:
 
 jobs:
   lint-frontend-nginx:
-    name: Lint Frontend Nginx
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       # Checkout repository
