@@ -2,7 +2,6 @@
   "name": "tpl--nginx-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "🧪 🧪 🧪 🧪": "TEST",
     "test": "echo \"Error: no test specified\"",

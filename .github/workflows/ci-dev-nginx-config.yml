@@ -4,7 +4,7 @@ on:
 
 jobs:
   lint-nginx-config:
-    name: Lint Nginx Config
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       # Checkout repository
