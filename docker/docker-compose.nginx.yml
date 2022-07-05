@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  # ---------------------------------------------------------------------
+  # | Nginx-Service                                                     |
+  # ---------------------------------------------------------------------
+  nginx:
+    build:
+      context: ../backend/nginx
+      dockerfile: nginx.Dockerfile
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80" # Exposes port 80 for incomming web requests
+    volumes:
+      - ../backend/nginx/dist:/usr/share/nginx/html

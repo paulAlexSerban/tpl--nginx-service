@@ -2,6 +2,7 @@
 
 # START Docker Compose Services
 function startComposeNginx() {
+  bash backend/nginx/package-scripts.bash build
   docker-compose --env-file config.env \
     --file docker/docker-compose.nginx.yml \
     up --detach --build
