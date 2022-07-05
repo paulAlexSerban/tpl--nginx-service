@@ -4,9 +4,18 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    name: Test and Lint
+  lint-nginx-config:
+    name: Config
+    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-config.yml@develop
+
+  lint-nginx-frontend:
+    name: Frontend
+    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-frontend.yml@develop
+
+  test-nginx-docker:
+    name: Test
     uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-docker.yml@develop
+
   release:
     name: Release
     runs-on: ubuntu-latest

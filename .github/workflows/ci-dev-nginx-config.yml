@@ -1,10 +1,17 @@
 name: CI Develop Nginx Config
 on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
   workflow_call:
 
 jobs:
   lint-nginx-config:
-    name: Lint
+    name: Lint Config Nginx
     runs-on: ubuntu-latest
     steps:
       # Checkout repository

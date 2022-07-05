@@ -10,20 +10,9 @@ on:
   workflow_call:
 
 jobs:
-  lint-nginx-config:
-    name: Config
-    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-config.yml@develop
-
-  lint-frontend-nginx:
-    name: Frontend
-    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-frontend.yml@develop
-
   test-docker:
-    name: Test Docker
+    name: Test Docker Nginx
     runs-on: ubuntu-latest
-    needs:
-      - lint-nginx-config
-      - lint-frontend-nginx
     steps:
       # Checkout repository
       - name: "☁️ checkout repository"

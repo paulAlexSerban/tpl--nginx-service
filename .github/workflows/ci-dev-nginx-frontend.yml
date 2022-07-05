@@ -1,10 +1,17 @@
 name: CI Develop Nginx Frontend
 on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
   workflow_call:
 
 jobs:
   lint-frontend-nginx:
-    name: Lint
+    name: Lint Frontend Nginx
     runs-on: ubuntu-latest
     steps:
       # Checkout repository
