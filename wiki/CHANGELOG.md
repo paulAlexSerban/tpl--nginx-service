@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/paulAlexSerban/tpl--nginx-server/compare/v1.0.0...v1.0.1) (2022-07-05)
+
+
+### Bug Fixes
+
+* **gh-pages:** deploy nginx pages ([5e1cdd0](https://github.com/paulAlexSerban/tpl--nginx-server/commit/5e1cdd0124791e8ccd470ead0496d44f0374e7ec))
+
 # 1.0.0 (2022-07-05)
 
 
