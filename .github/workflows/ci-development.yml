@@ -31,7 +31,7 @@ jobs:
         if: steps.changed-nginx-config.outputs.any_changed == 'true'
         uses: docker://yandex/gixy:latest
         with:
-          args: /github/workspace/nginx.conf
+          args: /backend/nginx/config/nginx.conf
 
   test-docker:
     name: Test Docker
