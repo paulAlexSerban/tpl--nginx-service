@@ -10,7 +10,8 @@ on:
   workflow_call:
 
 jobs:
-  lint:
+  lint-nginx:
+    name: Lint Nginx Config
     runs-on: ubuntu-latest
     steps:
       # Checkout repository
@@ -37,7 +38,7 @@ jobs:
     name: Test Docker
     runs-on: ubuntu-latest
     needs:
-      - lint
+      - lint-nginx
     steps:
       # Checkout repository
       - name: "☁️ checkout repository"
