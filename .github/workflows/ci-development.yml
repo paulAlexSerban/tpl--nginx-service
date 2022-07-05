@@ -31,7 +31,7 @@ jobs:
         if: steps.changed-nginx-config.outputs.any_changed == 'true'
         uses: docker://yandex/gixy:latest
         with:
-          args: paulAlexSerban/tpl--nginx-server/backend/nginx/config/default.conf
+          args: /github/workspace/backend/nginx/config/default.conf
 
   test-docker:
     name: Test Docker
