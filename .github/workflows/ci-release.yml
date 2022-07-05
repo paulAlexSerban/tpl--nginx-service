@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     name: Test and Lint
-    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-development.yml@develop
+    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-docker.yml@develop
   release:
     name: Release
     runs-on: ubuntu-latest
