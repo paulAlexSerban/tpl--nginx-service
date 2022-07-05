@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "🧪 🧪 🧪 🧪": "TEST",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "test:container:nginx": "bash package-scripts.bash testCurlTraefikContainer",
     "📦 📦 📦 📦": "INSTALL DEPENDENCIES",
     "install:ci": "npm ci --omit=dev --ignore-scripts",
