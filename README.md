@@ -4,7 +4,8 @@
 
 ## Development Scripts
 
-- `npm run install:root` - install root devDependencies
+- `npm run install:root` - install root dependencies
+- `npm run install:projects` - install all projects devDependencies
 - `npm run start:compose:all` - start docker compose containers
 - `npm run stop:compose:all` - stop docker compose containers
 - `npm run test:container:nginx` - test all docker containers with curl for response

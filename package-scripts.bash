@@ -2,8 +2,9 @@
 
 # START Docker Compose Services
 function startComposeNginx() {
+  echo "🏗️  BUILD Nginx code"
+  npm run build:nginx
   echo "🐳  🟢  START Nginx conatiner "
-  bash backend/nginx/package-scripts.bash build
   docker-compose --env-file config.env \
     --file docker/docker-compose.nginx.yml \
     up --detach --build
@@ -31,6 +32,13 @@ function stopComposeAll() {
     --file docker/docker-compose.nginx.yml \
     down --volumes --rmi all
   docker container prune -f
+}
+
+# INSTALL
+
+function installAll () {
+  echo "🔧  Installing Nginx 🔧 " 
+  npm --prefix frontend/nginx install
 }
 
 $1

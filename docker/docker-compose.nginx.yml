@@ -12,4 +12,4 @@ services:
     ports:
       - "80:80" # Exposes port 80 for incomming web requests
     volumes:
-      - ../backend/nginx/dist:/usr/share/nginx/html
+      - ../frontend/nginx/dist:/usr/share/nginx/html
