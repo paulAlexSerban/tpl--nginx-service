@@ -20,7 +20,9 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     needs:
-      - test
+      - lint-nginx-config
+      - lint-nginx-frontend
+      - test-nginx-docker
     steps:
       # Checkout repository
       - name: "☁️ checkout repository"
