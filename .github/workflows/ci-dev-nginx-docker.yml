@@ -1,0 +1,73 @@
+name: CI Develop
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+  workflow_call:
+
+jobs:
+  lint-nginx-config:
+    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-config.yml@develop
+
+  lint-frontend-nginx:
+    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-frontend.yml@develop
+
+  test-docker:
+    name: Test Docker
+    runs-on: ubuntu-latest
+    needs:
+      - lint-nginx-config
+      - lint-frontend-nginx
+    steps:
+      # Checkout repository
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Verify if there were changes in ./docker or *.Dockerfile
+      - name: "🔍  Verify Changed Nginx files ./docker or *.Dockerfile"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-nginx-docker
+        with:
+          files: |
+              docker/*.nginx.yml
+              **/nginx.Dockerfile
+
+      # Cache node_modules to speed up things if there were changes in ./docker or *.Dockerfile
+      - name: "Cache node_modules"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Install NodeJS & npm if there were changes in ./docker or *.Dockerfile
+      - name: "🔧  Setup NodeJS 14.19.1"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.19.1
+
+      - name: "🔧  Install npm@latest"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        run: npm i -g npm@latest
+
+      # Start Docker containers if there are changes detected
+      - name: "🐳  Start Nginx Docker Containers"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        run: npm run start:compose:nginx
+  
+      - name: "🧪  Check running containers"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        run: docker ps -a
+  
+      - name: "🧪 Test Nginx container"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        run: npm run test:container:nginx
