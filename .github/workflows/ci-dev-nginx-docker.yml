@@ -11,11 +11,11 @@ on:
 
 jobs:
   lint-nginx-config:
-    name: Lint Nginx Config
+    name: Config
     uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-config.yml@develop
 
   lint-frontend-nginx:
-    name: Lint Nginx Frontend
+    name: Frontend
     uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-frontend.yml@develop
 
   test-docker:
