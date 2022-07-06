@@ -46,10 +46,9 @@ jobs:
       - name: "📦  Package Nginx"
         run: "npm run package:nginx"
 
-      # Deploy ./frontend/static/poc to GitHub pages
       - name: Deploy Nginx to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages-nginx
-          folder: docs/static/poc
+          folder: docs/nginx
 
