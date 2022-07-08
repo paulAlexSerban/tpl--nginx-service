@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/paulAlexSerban/tpl--nginx-server/compare/v1.0.1...v1.1.0) (2022-07-08)
+
+
+### Bug Fixes
+
+* **docker-compose.nginx:** fixed linter errors ([4abbfab](https://github.com/paulAlexSerban/tpl--nginx-server/commit/4abbfabb13e9ef8be68e7376400470f1de293f89))
+* **rename:** fixed yaml file ([ed04592](https://github.com/paulAlexSerban/tpl--nginx-server/commit/ed04592fa8e5174d9aaed800c920c0a71f79e164))
+
+
+### Features
+
+* **scripts:** updated scripts structure ([c30fe44](https://github.com/paulAlexSerban/tpl--nginx-server/commit/c30fe44513ba264498f828b41e67c55bafb689d8))
+
 ## [1.0.1](https://github.com/paulAlexSerban/tpl--nginx-server/compare/v1.0.0...v1.0.1) (2022-07-05)
 
 
