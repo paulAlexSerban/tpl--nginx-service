@@ -1,36 +1,16 @@
-name: CI Release Workflow
+name: Release
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  lint-nginx-config:
-    name: Config
-    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-config.yml@develop
-
-  lint-nginx-frontend:
-    name: Frontend
-    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-frontend.yml@develop
-
-  test-nginx-docker:
-    name: Test
-    uses: paulAlexSerban/tpl--nginx-server/.github/workflows/ci-dev-nginx-docker.yml@develop
-
   release:
     name: Release
     runs-on: ubuntu-latest
-    needs:
-      - lint-nginx-config
-      - lint-nginx-frontend
-      - test-nginx-docker
     steps:
-      # Checkout repository
       - name: "☁️ checkout repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
-      # Cache node_modules to speed up things
       - name: Cache node_modules
         uses: actions/cache@v1
         with:
@@ -49,7 +29,6 @@ jobs:
       - name: "📦  Install CI dependencies"
         run: npm run install:ci
 
-      # Create and tag new release using semantic-release
       - name: "🚀 Create Release"
         run: npx semantic-release
         env:
