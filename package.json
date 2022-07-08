@@ -3,27 +3,11 @@
   "version": "1.0.1",
   "description": "",
   "scripts": {
-    "🧪 🧪 🧪 🧪": "TEST",
     "test": "echo \"Error: no test specified\"",
-    "test:container:nginx": "bash package-scripts.bash testCurlNginxContainer",
-    "📦 📦 📦 📦": "INSTALL DEPENDENCIES",
     "install:ci": "npm ci --omit=dev --ignore-scripts",
     "install:root": "npm install",
-    "install:nginx": "npm --prefix frontend/nginx install",
-    "install:all": "bash package-scripts.bash installAll",
     "prepare": "husky install",
-    "🏗️ 🏗️ 🏗️ 🏗️": "BUILD",
-    "build:nginx": "npm --prefix frontend/nginx run build",
-    "👀 👀 👀 👀": "WATCH",
-    "watch:nginx": "npm --prefix frontend/nginx run watch",
-    "🐳  🟢  🐳  🟢 ": "START - Docker Compose",
-    "start:compose:nginx": "bash package-scripts.bash startComposeNginx",
-    "🛑  🐳  🛑  🐳": "STOP - Docker Compose",
-    "stop:compose:all": "bash package-scripts.bash stopComposeAll",
-    "stop:compose:nginx": "bash package-scripts.bash stopComposeNginx",
-    "📦  🟢  📦  🟢  📦  🟢 ": "PACKAGE",
-    "package:clean": "rm -rfv ./docs",
-    "package:nginx": "npm run package:clean && mkdir -p docs/nginx && cp -rfv frontend/nginx/dist/* ./docs/nginx"
+    "watch:nginx": "echo '👀  Watching Frontend Nginx' && npm --prefix frontend/nginx run watch"
   },
   "repository": {
     "type": "git",
