@@ -1,5 +1,5 @@
 ---
-name: Lint
+name: Yaml
 on:
   push:
     branches-ignore:
