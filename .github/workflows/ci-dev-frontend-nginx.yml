@@ -1,26 +1,24 @@
-name: CI Develop Nginx Frontend
+name: Develop Frontend Nginx
+
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
+  push:
+    branches-ignore:
+      - release
+      - main
+      - develop
 
   workflow_call:
 
 jobs:
-  lint-frontend-nginx:
-    name: Lint Frontend Nginx
+  lint-frontend:
+    name: Lint Frontend
     runs-on: ubuntu-latest
     steps:
-      # Checkout repository
       - name: "☁️ checkout repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # Verify if there were changes in ./docker or *.Dockerfile
       - name: "🔍  Verify Changed Frontend Nginx Files"
         uses: tj-actions/changed-files@v23.1
         id: changed-frontend-nginx-files
@@ -28,7 +26,6 @@ jobs:
           files: |
               frontend/nginx/**/*
 
-      # Cache node_modules to speed up things if there were changes in ./docker or *.Dockerfile
       - name: "Cache node_modules"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
         uses: actions/cache@v1
@@ -38,7 +35,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # Install NodeJS & npm if there were changes in ./docker or *.Dockerfile
       - name: "🔧  Setup NodeJS 14.19.1"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
         uses: actions/setup-node@v1
@@ -49,12 +45,10 @@ jobs:
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
         run: npm i -g npm@latest
 
-      # Install DEV dependencies if there are changes detected
       - name: "📦  Install Nginx Development dependencies"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
-        run: npm run install:nginx
+        run: bash scripts/frontend-install-nginx.bash
 
-      # Build all projects files to be used in docker images if changes are detected
       - name: "🏗️  Build Frontend Nginx"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
-        run: npm run build:nginx
+        run: bash scripts/frontend-build-nginx.bash

@@ -1,0 +1,33 @@
+---
+name: Lint
+on:
+  push:
+    branches-ignore:
+      - release
+      - main
+      - develop
+  workflow_call:
+
+jobs:
+  lint-yaml:
+    name: Lint Yaml
+    runs-on: ubuntu-latest
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: "🔍  Verify Changed .yaml files"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-yaml-files
+        with:
+          files: |
+              *.yml
+              **/*.yml
+
+      - name: "🔍 Lint"
+        if: steps.changed-yaml-files.outputs.any_changed == 'true'
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: ./**/*.yml

@@ -1,17 +1,16 @@
-name: CI Develop Nginx Config
+name: Nginx Config
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
+  push:
+    branches-ignore:
+      - release
+      - main
+      - develop
 
   workflow_call:
 
 jobs:
   lint-nginx-config:
-    name: Lint Config Nginx
+    name: Lint Nginx Server Config
     runs-on: ubuntu-latest
     steps:
       # Checkout repository
