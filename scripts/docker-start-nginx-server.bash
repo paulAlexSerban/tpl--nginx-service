@@ -2,7 +2,7 @@
 cd $(dirname $0) # makes sure the folder containing the script will be the root folder
 
 echo "🏗️  BUILD Nginx content"
-npm ---prefix .. run build:nginx
+bash frontend-build-nginx.bash
 
 echo "🟢  START 🐳  Docker Nginx server conatiner "
 docker-compose --env-file ../config.env \
