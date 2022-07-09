@@ -10,8 +10,8 @@ on:
   workflow_call:
 
 jobs:
-  lint-frontend:
-    name: Lint Frontend
+  build-frontend:
+    name: Build Frontend Nginx
     runs-on: ubuntu-latest
     steps:
       - name: "☁️ checkout repository"
@@ -45,9 +45,13 @@ jobs:
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
         run: npm i -g npm@latest
 
-      - name: "📦  Install Nginx Development dependencies"
+      - name: "📦  Install Frontend Nginx Development dependencies"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
         run: bash scripts/frontend-install-nginx.bash
+
+      - name: "🔍  Lint Frontend Nginx"
+        if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
+        run: npm --prefix frontend/nginx run lint
 
       - name: "🏗️  Build Frontend Nginx"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
