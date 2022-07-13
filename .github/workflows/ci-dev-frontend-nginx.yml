@@ -1,3 +1,4 @@
+---
 name: Develop Frontend Nginx
 
 on:
@@ -28,9 +29,10 @@ jobs:
 
       - name: "Cache node_modules"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: |
+            ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -47,12 +49,13 @@ jobs:
 
       - name: "📦  Install Frontend Nginx Development dependencies"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
-        run: bash scripts/frontend-install-nginx.bash
+        run: bash scripts/frontend-nginx-install.bash
 
       - name: "🔍  Lint Frontend Nginx"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
-        run: npm --prefix frontend/nginx run lint
+        run: bash scripts/frontend-nginx-lint.bash
 
       - name: "🏗️  Build Frontend Nginx"
         if: steps.changed-frontend-nginx-files.outputs.any_changed == 'true'
-        run: bash scripts/frontend-build-nginx.bash
+        run: bash scripts/frontend-nginx-build.bash
+        

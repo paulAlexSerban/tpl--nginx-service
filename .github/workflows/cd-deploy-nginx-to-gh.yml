@@ -1,12 +1,11 @@
-name: Deploy to Github Pages
+name: Deploy Nginx to Github Pages
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    name: Deploy
+    name: Deploy Nginx
     runs-on: ubuntu-latest
-
     steps:
       - name: "☁️ checkout repository"
         uses: actions/checkout@v3
@@ -14,9 +13,10 @@ jobs:
           fetch-depth: 0
 
       - name: Cache node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: |
+            ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -30,10 +30,10 @@ jobs:
         run: npm i -g npm@latest
 
       - name: "📦  Install Nginx Development dependencies"
-        run: bash scripts/frontend-install-nginx.bash
+        run: bash scripts/frontend-nginx-install.bash
 
       - name: "🏗️  Build Frontend Nginx"
-        run: bash scripts/frontend-build-nginx.bash
+        run: bash scripts/frontend-nginx-build.bash
 
       - name: "📦  Package Nginx"
         run: |
@@ -45,4 +45,3 @@ jobs:
         with:
           branch: gh-pages-nginx
           folder: package/nginx
-
