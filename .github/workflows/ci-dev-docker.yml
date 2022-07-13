@@ -1,11 +1,11 @@
-name: Docker
+---
+name: Develop Docker
 on:
   push:
     branches-ignore:
       - release
       - main
       - develop
-
   workflow_call:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     name: Test Docker
     runs-on: ubuntu-latest
     steps:
-      - name: "☁️ checkout repository"
+      - name: "📥 Checkout repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -24,30 +24,10 @@ jobs:
         with:
           files: |
               docker/*.nginx.yml
-              **/nginx.Dockerfile
-
-      - name: "Cache node_modules"
-        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: "🔧  Setup NodeJS 14.19.1"
-        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.19.1
-
-      - name: "🔧  Install npm@latest"
-        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
-        run: npm i -g npm@latest
 
       - name: "🐳  Start Nginx Docker Containers"
         if: steps.changed-nginx-docker.outputs.any_changed == 'true'
-        run: bash scripts/docker-start-nginx-server.bash  
+        run: bash scripts/docker-nginx-start.bash
   
       - name: "🧪  List running containers"
         if: steps.changed-nginx-docker.outputs.any_changed == 'true'
@@ -55,5 +35,4 @@ jobs:
   
       - name: "🧪 Test Nginx container"
         if: steps.changed-nginx-docker.outputs.any_changed == 'true'
-        run: bash scripts/docker-test-curl-nginx-server.bash
-
+        run: bash scripts/docker-nginx-test.bash
