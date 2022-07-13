@@ -6,13 +6,12 @@
 #
 name: CodeQL Analysis
 on:
-  push:
-    branches-ignore:
-      - release
-      - main
-      - develop
-  schedule:
-    - cron: '36 23 * * 6'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:    
+      - 'main'
 
 jobs:
   code-scanning:
