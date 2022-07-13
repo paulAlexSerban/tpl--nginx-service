@@ -12,7 +12,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔄  Cache node_modules
+      - name: "🔄  Cache node_modules"
         uses: actions/cache@v2
         with:
           path: |
