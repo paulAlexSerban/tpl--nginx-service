@@ -4,9 +4,11 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Nginx
+    name: Deploy Nginx to Github Pages
     runs-on: ubuntu-latest
     steps:
+      - name: Print date
+        run: echo "The date is $(date "+%Y-%m-%d")"
       - name: "📥 checkout repository"
         uses: actions/checkout@v3
         with:
@@ -37,11 +39,11 @@ jobs:
 
       - name: "🚚  Package Nginx"
         run: |
-          bash scripts/package-clean.bash
-          bash scripts/package-nginx.bash
+          bash modulize.bash -e gh_pages -m package -p clean
+          bash modulize.bash -e gh_pages -m package -p build
 
       - name: "🚀 Deploy to GitHub Pages"
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          branch: gh-pages-nginx
+          branch: gh-pages-preview-$(date "+%Y-%m-%d")
           folder: package/nginx
