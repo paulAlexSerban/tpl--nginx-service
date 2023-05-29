@@ -1,3 +1,21 @@
+# [1.2.0](https://github.com/paulAlexSerban/tpl--nginx-service/compare/v1.1.0...v1.2.0) (2023-05-29)
+
+
+### Bug Fixes
+
+* **ci:** adapted ci issues ([9b2ef48](https://github.com/paulAlexSerban/tpl--nginx-service/commit/9b2ef4884530e8c4fc734c5fd8ef5b22af3a798e))
+
+
+### Features
+
+* gitignore ([2b81c87](https://github.com/paulAlexSerban/tpl--nginx-service/commit/2b81c876cd7c472fc2b7616236843a57836e2f30))
+* reafactor ([95e3ef3](https://github.com/paulAlexSerban/tpl--nginx-service/commit/95e3ef31d90e70a7f0b75b8755ee2c5917d00f45))
+
+
+### Reverts
+
+* initial refactor ([f90eab3](https://github.com/paulAlexSerban/tpl--nginx-service/commit/f90eab3e56bd0c1aaddf9974964e8738701b060b))
+
 # [1.1.0](https://github.com/paulAlexSerban/tpl--nginx-server/compare/v1.0.1...v1.1.0) (2022-07-08)
 
 
