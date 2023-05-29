@@ -1,6 +1,6 @@
 module.exports = {
   branches: "main",
-  repositoryUrl: "https://github.com/paulAlexSerban/tpl--nginx-server",
+  repositoryUrl: "https://github.com/paulAlexSerban/tpl--nginx-service",
   plugins: [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
