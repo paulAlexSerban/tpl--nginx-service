@@ -3,4 +3,4 @@
 cd "$(dirname "$0")" || exit
 
 echo "🛑  Cleaning Package"
-rm -rfv ../package
+rm -rfv ../package/nginx
