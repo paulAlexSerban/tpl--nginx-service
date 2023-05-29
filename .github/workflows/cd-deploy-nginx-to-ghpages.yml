@@ -45,5 +45,5 @@ jobs:
       - name: "🚀 Deploy to GitHub Pages"
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          branch: gh-pages-preview-$(date "+%Y-%m-%d")
+          branch: gh-pages-nginx
           folder: package/nginx
