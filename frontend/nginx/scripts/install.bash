@@ -3,6 +3,6 @@
 cd "$(dirname "$0")" || exit
 
 echo "🛑  Cleaning Frontend Nginx node_modules"
-rm -rfv ../frontend/nginx/node_modules
+rm -rfv ../node_modules
 echo "🔧  Installing Frontend Nginx"
-npm --prefix ../frontend/nginx install
+npm --prefix .. install

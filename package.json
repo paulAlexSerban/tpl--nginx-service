@@ -1,30 +1,22 @@
 {
-  "name": "tpl--nginx-server",
-  "version": "1.1.0",
+  "name": "tpl--nginx-service",
+  "version": "1.2.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "lint": "shellcheck ./**/*.bash",
+    "test": "echo 'no test script'",
+    "lint": "echo 'no lint script'",
     "install:ci": "npm ci --omit=dev --ignore-scripts",
     "install:root": "npm install",
-    "prepare": "husky install",
-    "watch:nginx": "echo '👀  Watching Frontend Nginx' && npm --prefix frontend/nginx run watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/paulAlexSerban/tpl--nginx-server.git"
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/paulAlexSerban/tpl--nginx-server/issues"
-  },
-  "homepage": "https://github.com/paulAlexSerban/tpl--nginx-server#readme",
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
     "@semantic-release/changelog": "^6.0.1",
