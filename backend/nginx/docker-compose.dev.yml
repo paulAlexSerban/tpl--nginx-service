@@ -7,11 +7,11 @@ services:
   # ---------------------------------------------------------------------
   nginx:
     build:
-      context: ../backend/nginx
-      dockerfile: nginx.Dockerfile
+      context: .
+      dockerfile: Dockerfile
     container_name: nginx
     restart: unless-stopped
     ports:
       - "80:80" # Exposes port 80 for incomming web requests
     volumes:
-      - ../frontend/nginx/dist:/usr/share/nginx/html
+      - ../../frontend/nginx/dist:/usr/share/nginx/html
